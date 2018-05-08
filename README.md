@@ -16,6 +16,7 @@ Subcortical ROIs (including left and right hemispherical thalamus, striatum, hip
 
 
 =====================================================================================
+
 Visualization of correlation matrix
 Run MATLAB script PlotCorrelationMatrix.m to plot the correlation matrix.
 Example:
@@ -27,12 +28,14 @@ The final arrangement of ROIs is listed in ROIs_reordered.txt.
 
 
 =====================================================================================
+
 Scan parameters
 Participants underwent two runs of a 6-min resting state (eyes open, black screen) with the following scan parameters: TR = 2000ms, TE = 30 ms, FA = 90 degree, FoV = 192x192 mm, isotropic voxel size = 3x3x3 mm. 
 High resolution structural images were also collected using MPRAGE sequence (TR = 2300 ms, TI = 900 ms, FA = 8 degree, voxel dimension = 1x1x1 mm, FoV = 256 x 240 mm)
 
 
 =====================================================================================
+
 fMRI preprocessing
 1) Discard the first four frames of each run
 2) Correct for slice acquisition-dependent time shifts in each volume with SPM
@@ -45,6 +48,7 @@ fMRI preprocessing
 
 
 =====================================================================================
+
 Dynamic functional connectivity (DFC)
 DFC was computed using a sliding window approach following Allen, et al. Specifically, BOLD time series from the 122 ROIs (see list of ROIs in ROIs_list.txt) were first de-spiked and de-meaned.  A tapered window was constructed by convolving a rectangular window (20 TRs) and a Gaussian function (sigma = 3 TRs). Covariance among all possible ROIs pairs within the tapered window were estimated using the regularized precision matrix. The graphical LASSO method with L1 norm penalty (regularization parameter  = 0.1) was applied to promote sparsity. This process was repeated by shifting the tapered window by 1 TR. For each functional run, we obtained 156 covariance matrices, each with 7381 (122 x 121 / 2) unique correlation values.
 Covariance matrices from 52 subjects were collapsed together and k-means clustering was performed to classify each DFC matrix using L1 distance as the cost function. 
